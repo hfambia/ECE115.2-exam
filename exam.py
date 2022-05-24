@@ -83,3 +83,10 @@ def main():
     
 if __name__ == '__main__':
     main()
+ def Lap(self):
+        tempo = self._elapsedtime - self.prevLapHolder
+        if self._running:
+            self.laps.append(self._setLapTime(tempo))
+            self.m.insert(END, self.laps[-1])
+            self.m.yview_moveto(1)
+            self.prevLapHolder = self._elapsedtime
