@@ -83,6 +83,8 @@ def main():
     
 if __name__ == '__main__':
     main()
+    
+    
  def Lap(self):
         tempo = self._elapsedtime - self.prevLapHolder
         if self._running:
