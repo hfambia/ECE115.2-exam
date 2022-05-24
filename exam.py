@@ -40,8 +40,10 @@ class StopWatch(Frame):
         self.timestr.set('%02d:%02d:%02d' % (minutes, seconds, hseconds))
 
     def _setLapTime(self, elap):
-        ##placeholder for elapsed timeee
-        {}
+        minutes = int(elap/60)
+        seconds = int(elap - minutes*60.0)
+        hseconds = int((elap - minutes*60.0 - seconds)*100)            
+        return '%02d:%02d:%02d' % (minutes, seconds, hseconds)
     
     
     def Start(self):                                          
@@ -59,8 +61,12 @@ class StopWatch(Frame):
         {}
     
     def Lap(self):
-        ##placeholder
-        {}
+        tempo = self._elapsedtime - self.prevLapHolder
+        if self._running:
+            self.laps.append(self._setLapTime(tempo))
+            self.m.insert(END, self.laps[-1])
+            self.m.yview_moveto(1)
+            self.prevLapHolder = self._elapsedtime
         
     
       
@@ -73,7 +79,7 @@ def main():
     root.wm_attributes("-topmost", 1)
     sw = StopWatch(root)
     sw.pack(side=TOP)
-    Button(root, text='Lap').pack(side=LEFT,fill=X, expand=YES, anchor=S)
+    Button(root, text='Lap',command=sw.Lap).pack(side=LEFT,fill=X, expand=YES, anchor=S)
     Button(root, text='Start',command=sw.Start).pack(side=LEFT,fill=X, expand=YES, anchor=S)
     Button(root, text='Stop').pack(side=LEFT,fill=X, expand=YES, anchor=S)
     Button(root, text='Reset', command=sw.Reset).pack(side=LEFT,fill=X, expand=YES, anchor=S)
@@ -83,12 +89,3 @@ def main():
     
 if __name__ == '__main__':
     main()
-    
-    
- def Lap(self):
-        tempo = self._elapsedtime - self.prevLapHolder
-        if self._running:
-            self.laps.append(self._setLapTime(tempo))
-            self.m.insert(END, self.laps[-1])
-            self.m.yview_moveto(1)
-            self.prevLapHolder = self._elapsedtime
