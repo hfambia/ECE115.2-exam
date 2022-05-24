@@ -21,6 +21,11 @@ class StopWatch(Frame):
         scrollbar.config(command=self.m.yview)
         scrollbar.pack(side=RIGHT, fill=Y)
         
+    def _update(self): 
+        self._elapsedtime = time.time() - self._start
+        self._setTime(self._elapsedtime)
+        self._timer = self.after(50, self._update)
+       
     def _setTime(self, elap):
         minutes = int(elap/60)
         seconds = int(elap - minutes*60.0)
@@ -47,3 +52,8 @@ def main():
     Button(root, text='Reset').pack(side=LEFT,fill=X, expand=YES, anchor=S)
     Button(root, text='Quit').pack(side=LEFT,fill=X, expand=YES, anchor=S)
     root.mainloop()
+
+    
+if __name__ == '__main__':
+    main()
+    
