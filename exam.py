@@ -7,6 +7,7 @@ class StopWatch(Frame):
         self._start = 0.0        
         self._elapsedtime = 0.0
         self._running = 0
+        self.laps = []
         self.timestr = StringVar()
         self.makeWidgets()
         
@@ -52,7 +53,7 @@ def main():
     Button(root, text='Lap').pack(side=LEFT,fill=X, expand=YES, anchor=S)
     Button(root, text='Start',command=sw.Start).pack(side=LEFT,fill=X, expand=YES, anchor=S)
     Button(root, text='Stop').pack(side=LEFT,fill=X, expand=YES, anchor=S)
-    Button(root, text='Reset').pack(side=LEFT,fill=X, expand=YES, anchor=S)
+    Button(root, text='Reset', command=sw.Reset).pack(side=LEFT,fill=X, expand=YES, anchor=S)
     Button(root, text='Quit').pack(side=LEFT,fill=X, expand=YES, anchor=S)
     root.mainloop()
 
