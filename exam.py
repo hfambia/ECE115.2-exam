@@ -10,17 +10,20 @@ class StopWatch(Frame):
         self.laps = []
         self.timestr = StringVar()
         self.makeWidgets()
+        self.prevLapHolder = 0
         
     def makeWidgets(self):                         
         self.e = Entry(self)
+        TimerText = Label(self, text='Time')
+        TimerText.pack(fill=X, expand=NO, padx=80)
         l = Label(self, textvariable=self.timestr)
         self._setTime(self._elapsedtime)
-        l.pack(fill=X, expand=NO, pady=3, padx=2)
+        l.pack(fill=X, expand=NO, padx=2)
         l2 = Label(self, text='Laps')
-        l2.pack(fill=X, expand=NO, pady=4, padx=2)
+        l2.pack(fill=X, expand=NO, pady=10, padx=80)
         scrollbar = Scrollbar(self, orient=VERTICAL)
         self.m = Listbox(self,selectmode=EXTENDED, height = 5, yscrollcommand=scrollbar.set)
-        self.m.pack(side=LEFT, fill=BOTH, expand=1, pady=5, padx=2)
+        self.m.pack(side=LEFT, fill=BOTH, expand=1, padx=2)
         scrollbar.config(command=self.m.yview)
         scrollbar.pack(side=RIGHT, fill=Y)
         
@@ -28,24 +31,44 @@ class StopWatch(Frame):
         self._elapsedtime = time.time() - self._start
         self._setTime(self._elapsedtime)
         self._timer = self.after(50, self._update)
-    
+        
+
     def _setTime(self, elap):
         minutes = int(elap/60)
         seconds = int(elap - minutes*60.0)
         hseconds = int((elap - minutes*60.0 - seconds)*100)                
         self.timestr.set('%02d:%02d:%02d' % (minutes, seconds, hseconds))
 
+    def _setLapTime(self, elap):
+        ##placeholder for elapsed timeee
+        {}
+    
+    
     def Start(self):                                          
         if not self._running:            
             self._start = time.time() - self._elapsedtime
             self._update()
             self._running = 1 
+    
+    def Stop(self):                                    
+        ##placeholder stop
+        {}
+       
+    def Reset(self):
+        ##Paki add nalang sa codee
+        {}
+    
+    def Lap(self):
+        ##placeholder
+        {}
         
+    
+      
         
 def main():
     root = Tk()
     root.title('Exam')
-    root.geometry("250x200")
+    root.geometry("250x220")
     root.resizable(False, False)
     root.wm_attributes("-topmost", 1)
     sw = StopWatch(root)
@@ -54,7 +77,7 @@ def main():
     Button(root, text='Start',command=sw.Start).pack(side=LEFT,fill=X, expand=YES, anchor=S)
     Button(root, text='Stop').pack(side=LEFT,fill=X, expand=YES, anchor=S)
     Button(root, text='Reset', command=sw.Reset).pack(side=LEFT,fill=X, expand=YES, anchor=S)
-    Button(root, text='Quit').pack(side=LEFT,fill=X, expand=YES, anchor=S)
+    Button(root, text='Quit',command=root.destroy).pack(side=LEFT,fill=X, expand=YES, anchor=S)
     root.mainloop()
 
     
