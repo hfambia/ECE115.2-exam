@@ -2,8 +2,8 @@ from tkinter import *
 import time
 
 class StopWatch(Frame):                                                           
-    def __init__(self, parent=None, **kw):        
-        Frame.__init__(self, parent, kw)
+    def __init__(self, parent=None):        
+        Frame.__init__(self, parent)
         self._start = 0.0        
         self._elapsedtime = 0.0
         self._running = 0
@@ -20,7 +20,7 @@ class StopWatch(Frame):
         self._setTime(self._elapsedtime)
         l.pack(fill=X, expand=NO, padx=2)
         l2 = Label(self, text='Laps')
-        l2.pack(fill=X, expand=NO, pady=10, padx=80)
+        l2.pack(fill=X, expand=NO, pady=10, padx=90)
         scrollbar = Scrollbar(self, orient=VERTICAL)
         self.m = Listbox(self,selectmode=EXTENDED, height = 5, yscrollcommand=scrollbar.set)
         self.m.pack(side=LEFT, fill=BOTH, expand=1, padx=2)
