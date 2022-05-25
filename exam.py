@@ -52,9 +52,12 @@ class StopWatch(Frame):
             self._update()
             self._running = 1 
     
-    def Stop(self):                                    
-        ##placeholder stop
-        {}
+    def Stop(self):                                                                        
+        if self._running:
+            self.after_cancel(self._timer)            
+            self._elapsedtime = time.time() - self._start    
+            self._setTime(self._elapsedtime)
+            self._running = 0
        
     def Reset(self):
         ##Paki add nalang sa codee
