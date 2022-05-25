@@ -3,7 +3,7 @@
 ECE115.2 Stopwatch Exam
 
 
-Complete with 
+Complete with functioning
 
 - Start
 - Stop
