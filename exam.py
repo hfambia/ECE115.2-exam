@@ -60,8 +60,13 @@ class StopWatch(Frame):
             self._running = 0
        
     def Reset(self):
-        ##Paki add nalang sa codee
-        {}
+        self._start = time.time()         
+        self._elapsedtime = 0.0
+        self.laps = []   
+        self._setTime(self._elapsedtime)
+        self.after_cancel(self._timer)            
+        self._elapsedtime = time.time() - self._start    
+        self._running = 0
     
     def Lap(self):
         tempo = self._elapsedtime - self.prevLapHolder
